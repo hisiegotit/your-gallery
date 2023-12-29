@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlbumController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::prefix('albums')->middleware('auth')->group(function () {
+    Route::get('/create', [AlbumController::class, 'create'])->name('albums.create');
+    Route::post('/create', [AlbumController::class, 'store'])->name('albums.store');
 });

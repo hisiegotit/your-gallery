@@ -24,5 +24,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::prefix('albums')->middleware('auth')->group(function () {
     Route::get('/create', [AlbumController::class, 'create'])->name('albums.create');
-    Route::post('/create', [AlbumController::class, 'store'])->name('albums.store');
+    Route::post('/store', [AlbumController::class, 'store'])->name('albums.store');
 });
